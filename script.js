@@ -15,28 +15,28 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById('btn').addEventListener("click", function (e) {
-        let temp = localStorage.getItem(document.getElementById('prod_title').value);
-        let temp2 = document.getElementById('prod_title').value;
-        if (temp2 === "") {
-            temp = localStorage.getItem(document.getElementById('prod_title').placeholder);
-            temp2 = document.getElementById('prod_title').placeholder;
+        let storage_key = localStorage.getItem(document.getElementById('prod_title').value);
+        let storage_val = document.getElementById('prod_title').value;
+        if (storage_val === "") {
+            storage_key = localStorage.getItem(document.getElementById('prod_title').placeholder);
+            storage_val = document.getElementById('prod_title').placeholder;
         }
         else {
-            temp2 = document.getElementById('prod_title').value;
+            storage_val = document.getElementById('prod_title').value;
         }
 
-        if (temp != null) {
-            let obj = JSON.parse(temp);
+        if (storage_key != null) {
+            let obj = JSON.parse(storage_key);
 
             obj.push(document.getElementById("review").value);
 
 
-            localStorage.setItem(temp2, JSON.stringify(obj));
+            localStorage.setItem(storage_val, JSON.stringify(obj));
         }
         else {
             let obj = [];
             obj.push(document.getElementById("review").value);
-            localStorage.setItem(temp2, JSON.stringify(obj));
+            localStorage.setItem(storage_val, JSON.stringify(obj));
         }
 
         location.reload();
